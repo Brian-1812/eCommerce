@@ -1,0 +1,53 @@
+{% extends 'dashboard\\base.html' %}
+{% load static %}
+{% block scripts %}
+	<link rel="stylesheet" type="text/css" href="{% static 'dashboard\\css\\cart.css' %}">
+{% endblock %}
+{% block order_num %}
+{{order_num}}
+{% endblock %}
+{% block body %}
+<div class="container">
+
+	<div class="row justify-content-center">
+		<div class="col-6" id="header">
+		<h1>Cart</h1>
+		</div>
+		<div class="col-6" id="total">
+			<h2>Items: {{order.get_cart_items}}</h2>
+			<h2>Total: ${{order.get_cart_total|floatformat:2}}</h2>
+			{% if order.get_cart_items > 0 %}
+			<h3><a href="{% url 'dashboard:checkout' order.id %}" class="btn btn-primary">Proceed to payment <i class="fas fa-long-arrow-alt-right"></i></a></h3>
+			{% endif %}
+		</div>
+	</div>
+	<div class="row justify-content-center">
+		{% for item in items %}
+			<div class="col-12 col-sm-6 col-md-4">
+				<div class="product">
+					<div class="image">
+						<h2>{{item.product.name.capitalize}}</h2>
+						<img src="{{item.product.image.url}}" class="thumbnail" width="150px" height="150px">
+					</div>
+					<div class="product-header">
+						<div id="quantity">
+							<h5>Quantity: </h5>
+							<h4>{{item.quantity}}</h4>
+							<div id="icons">
+								<span class="icon"><i class="fas fa-caret-up update-cart" data-product="{{item.product.id}}" data-action="increment" data-url="{% url 'dashboard:updateItem' %}" data-csrftoken="{{ csrf_token }}" style="color: #339af0;"></i></span>
+								<span class="icon"><i class="fas fa-caret-down update-cart" data-product="{{item.product.id}}" data-action="remove" data-url="{% url 'dashboard:updateItem' %}" data-csrftoken="{{ csrf_token }}" style="color: #339af0;"></i></span>
+							</div>
+						</div>
+						<h6>Price: ${{item.product.price|floatformat:2}}</h6>
+					</div>
+					<div class="product-body">
+						<h4>Total: ${{item.get_total|floatformat:2}}</h3>
+						<hr>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+{% endblock %}

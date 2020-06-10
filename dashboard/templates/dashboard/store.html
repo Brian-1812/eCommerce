@@ -1,0 +1,37 @@
+{% extends 'dashboard\\base.html' %}
+{% load static %}
+{% block scripts %}
+<link rel="stylesheet" type="text/css" href="{% static 'dashboard\\css\\dashboard.css' %}">
+{% endblock %}
+{% block order_num %}
+{{order_num}}
+{% endblock %}
+{% block body %}
+<div class="container">
+	<section class="for-cards">
+		<div class="row">
+			{% if products %}
+			{% for product in products %}
+			<div class="col col-sm-6 col-md-4 col-lg-3">
+				<div class="card-head">
+					<h4>{{product.name.capitalize}}</h4>
+				</div>
+				<div class="card-image">
+					<img class='thumbnail' src="{{product.image.url}}" width="300px" height="300px">
+				</div>
+				<div class="card-body">
+					<h3>${{product.price|floatformat:2}}</h3>
+				</div>
+				<div class="card-foot">
+					<a class="btn btn-primary" href="{% url 'dashboard:product_view' product.id %}">View</a>
+					<button class="btn btn-outline-success update-cart" data-product="{{product.id}}" data-action="add" data-url="{% url 'dashboard:updateItem' %}" data-csrftoken="{{ csrf_token }}">Add to cart</button>
+				</div>
+			</div>
+			{% endfor %}
+			{% endif %}
+		</div>
+	</section>
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

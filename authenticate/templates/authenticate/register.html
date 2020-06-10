@@ -1,0 +1,35 @@
+{% extends 'authenticate\\base.html' %}
+{% block title %}Account Register{% endblock %}
+{% load static %}
+{% block static %}
+<link rel="stylesheet" type="text/css" href="{% static 'authenticate\\css\\style_reg.css' %}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+<!-- <style type="text/css">
+	/*body{
+		background: url("{% static 'authenticate\\images\\bg.jpg' %}") no-repeat;
+	}*/
+</style> -->
+{% endblock %}
+{% block body %}
+	{% for message in messages %}
+		<div class="alert" role="alert">
+			{{message}}
+		</div>
+	{% endfor %}
+	<div class="login-box">
+	<form class="box" action="{% url 'authenticate:register' %}" method="post">
+		{% csrf_token %}
+		<h1>Create an account</h1>
+		{{form.username}}
+		{{form.email}}
+		{{form.password1}}
+		{{form.password2}}
+		<input type="submit" name="" value="Sign up">
+		<a href="{% url 'authenticate:login' %}" style="color: white;">Already have an account?</a>
+	</form>
+	
+</div>
+{% endblock %}
+{% block scripts %}
+	<script type="text/javascript" src="{% static 'authenticate\\js\\register.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'dashboard\\base.html' %}
+{% load static %}
+{% block scripts %}
+<link rel="stylesheet" type="text/css" href="{% static 'index\\css\\product_view.css' %}">
+{% endblock %}
+{% block order_num %}
+{{order_num}}
+{% endblock %}
+{% block body %}
+<div class="container">
+	<div class="product">
+		{% if product %}
+		<div class="product-image">
+			<img class="thumbnail" src="{{product.image.url}}">
+		</div>
+		<div class="product-body">
+		<div class="product-header">
+			{{ product.name.capitalize }}<br>
+			${{ product.price|floatformat:2 }}
+		</div>
+		<div class='product-description'>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla viverra nulla 
+					a nisl tincidunt viverra. Duis laoreet, enim quis fermentum placerat, velit purus 
+					accumsan turpis, at ultricies mi arcu ac nulla. In quis consequat nibh, eu varius enim.
+					 In eu gravida neque, id posuere mi. Nam scelerisque arcu a luctus volutpat. Integer 
+					 volutpat tristique mi, vel euismod ante consequat quis. In convallis augue sed 
+					 pellentesque rhoncus. Nulla luctus elementum enim. Morbi enim ipsum, viverra quis magna
+					  non, elementum semper risus. Phasellus a libero non turpis molestie consectetur vel eget
+					   purus. Curabitur tincidunt nisl quis elementum luctus. Morbi bibendum quam ac augue bibendum,
+					    at faucibus diam mollis. Nunc venenatis justo risus, id tristique ante scelerisque in. 
+						Nullam luctus est eu laoreet pretium. Vestibulum ultrices libero vitae enim faucibus varius.
+			</p>
+		</div>
+		<div class="product-action">
+			<button class="btn btn-outline-success update-cart" data-product="{{product.id}}" data-action="add" data-url="{% url 'dashboard:updateItem' %}" data-csrftoken="{{ csrf_token }}">Add to cart</button>
+		</div>
+		</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

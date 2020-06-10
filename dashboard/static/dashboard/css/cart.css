@@ -1,0 +1,38 @@
+.container{
+	display: block;
+}
+#total, #header{
+	text-align: center;
+	width: 50%;
+	margin: 20px;
+	padding: 15px;
+	box-shadow: 0px 0px 4px 4px #edebe8;
+}
+.product{
+	text-align:center;
+	margin-bottom: 15px;
+	padding: 15px;
+	box-shadow: 0px 0px 4px 4px #edebe8;
+}
+#quantity{
+	display: inline-block;
+}
+.image{
+	margin-bottom: 15px;
+}
+h5{
+	margin-right: 15px;
+	margin-top: 15px;
+}
+.icon{
+	cursor: pointer;
+}
+#icons{
+	display: block;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+h4{
+	margin-top: 15px;
+	color: #768733;
+}

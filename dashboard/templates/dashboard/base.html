@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	{% block scripts %}
+	{% endblock %}
+	{% load static %}
+	<script type="text/javascript">
+		var user = '{{request.user}}';
+	</script>
+	<script src="https://kit.fontawesome.com/250a986bc8.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'dashboard\\css\\base.css' %}">
+</head>
+<body>
+	<div id='container'>
+	<div id="main">
+	<nav class="navbar sticky-top navbar-expand-lg navbar-light">
+		<div class="container">
+		<a class="navbar-brand mb-0 h1" href="{% url 'dashboard:dashboard' %}">Xeon</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+				<a class="nav-link active" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+				</li>
+				<li class="nav-item">
+				<a class="nav-link active" href="{% url 'dashboard:store' 'all' %}">Store</a>
+				</li>
+				<li class="nav-item active dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<table>
+								<tr>
+									<td><a class="dropdown-item" href="{% url 'dashboard:store' 'Food' %}">Food</a></td>
+									<td><a class="dropdown-item" href="{% url 'dashboard:store' 'Electronics' %}">Electronics</a></td>
+									<td><a class="dropdown-item" href="{% url 'dashboard:store' 'Tools' %}">Tools and Home improvement</a></td>
+								</tr>
+								<tr>
+									<td><a class="dropdown-item" href="{% url 'dashboard:store' 'Drink' %}">Drink</a></td>
+									<td><a class="dropdown-item" href="{% url 'dashboard:store' 'Computers' %}">Computers</a></td>
+									<td><a class="dropdown-item" href="{% url 'dashboard:store' 'Home_kitchen' %}">Home and Kitchen</a></td>
+									
+								</tr>
+								<tr>
+									<td><a class="dropdown-item" href="{% url 'dashboard:store' 'Toys' %}">Toys</a></td>
+									<td><a class="dropdown-item" href="{% url 'dashboard:store' 'Automotive' %}">Automotive</a></td>
+									<td><a class="dropdown-item" href="{% url 'dashboard:store' 'Sports' %}">Sports and Outdoors</a></td>
+								</tr>
+								<tr>
+									<td><a class="dropdown-item" href="{% url 'dashboard:store' 'Apparel' %}">Apparel</a></td>
+									<td><a class="dropdown-item" href="{% url 'dashboard:store' 'Beauty' %}">Beauty</a></td>
+									<td><a class="dropdown-item" href="{% url 'dashboard:store' 'Health' %}">Health</a></td>
+								</tr>
+							</table>
+						</div>
+					</li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+				<a href="{% url 'dashboard:cart' %}"><i class="fas fa-shopping-cart"></i><span class="badge badge-light">{% block order_num %}{% endblock %}</span></a>
+				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				<a class="nav-link" href="{% url 'authenticate:logout' %}">Logout</a>
+			</form>
+		</div>
+		</div>
+		</nav>
+	{% block body %}
+	{% endblock %}
+	</div>
+</div>
+	<footer class="footer sticky-bottom">
+		<div class="container">
+			<p>© 2015 - 2020 Xeon® Global Inc.</p>
+			<p><a href="#">Terms of Service</a>
+			<a href="#">Privacy Policy</a>
+			<a href="#">Accessibility</a></p>
+		</div>
+	</footer>
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="{% static 'dashboard\\js\\cart.js' %}"></script>
+	{% block script %}
+	{% endblock %}
+</body>
+</html>

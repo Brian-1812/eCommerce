@@ -1,0 +1,82 @@
+{% extends 'dashboard\\base.html' %}
+{% load static %}
+{% block scripts %}
+	<link rel="stylesheet" type="text/css" href="{% static 'dashboard\\css\\checkout.css' %}">
+{% endblock %}
+{% block order_num %}
+{{order_num}}
+{% endblock %}
+{% block body %}
+
+	<div class="container">
+		<div class="alert alert-danger" role="alert"></div>
+		<div id="all-items">
+		<div class="total">
+			<div class="cost">
+				{% if total_cost %}
+				<h2>Total: ${{total_cost|floatformat:2}}</h2>
+				{% endif %}
+			</div>
+			<h2 style="margin-top: 25px;">Ordered items</h2>
+			<i class="fas fa-angle-double-down"></i>
+			<div class="items">
+				{% for item in items %}
+					<div class="item">
+						<div class="image">
+							<img src="{{item.product.image.url}}" class="thumbnail" width="90px" height="90px">
+						</div>
+						<div class="item-body">
+							<div class="item-header">
+								<h4>{{item.product.name.capitalize}} x{{item.quantity}}</h4>
+							</div>
+							<div class="item-footer">
+								<h4 style="color: #2c5e8a;">${{item.get_total|floatformat:2}}</h4>
+							</div>
+						</div>
+					</div>
+					<hr>
+				{% endfor %}
+			</div>
+		</div>
+		<div id="inputs">
+		<div id='address-form'>
+			<form id="address">
+				<label>Street address:</label>
+				<input class="form-control" type="text" name="street" required>
+				<br>
+				<label>City/Town:</label>
+				<input class="form-control" id="inputCity" type="text" name="city" required>
+				<br>
+				<label>Zipcode:</label>
+				<input class="form-control" type="number" name="zipcode" required>
+				<br>
+				<label>Country:</label>
+				<input class="form-control" type="text" name="country" required><br>
+				<input id="continue" type="submit" class="btn btn-success" value = 'Continue'></input>
+			</form>
+		</div>
+	
+		<div id="paypal-button-container" style="display: none;"></div>
+		</div>
+	</div>
+	</div>
+
+{% endblock %}
+
+{% block script %}
+<script src="https://www.paypal.com/sdk/js?client-id=ATdN6B8gdPmKyoImhe8BzINztQVvVBjx3kmUBlao48p3FEv9dseo7PCbcBSxITAoF-G1eVLE5c3sJlHR&currency=USD"></script>
+<script type="text/javascript">
+	var total = '{{total_cost|floatformat:2}}';
+	var csrftoken = '{{ csrf_token }}';
+	var premise_url = "{% url 'dashboard:store' 'all' %}";
+	var url = "{% url 'dashboard:processOrder' %}";
+	var shipping = false;
+	{% for item in items %}
+		{% if item.product.digital == False %}
+			shipping= true
+		{% endif %}
+	{% endfor %}
+</script>
+<script type="text/javascript" src="{% static 'dashboard\\js\\checkout.js' %}"></script>
+
+{% endblock %}

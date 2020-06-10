@@ -1,0 +1,74 @@
+@media screen and (max-width: 400px) {
+    #paypal-button-container {
+        width: 100%;
+    }
+}
+        
+        /* Media query for desktop viewport */
+@media screen and (min-width: 400px) {
+    #paypal-button-container {
+        width: 414;
+    }
+}
+
+
+
+.alert.alert-danger{
+	display: none;
+	text-align: center;
+	align-items: center;
+	margin-top: 5px;
+}
+#all-items{
+	display: inline-block;
+	padding: 5px;
+	margin: 10px;
+	width: 100%;
+}
+.total{
+	text-align: center;
+	align-items: center;
+	float:right;
+	width: 40%;
+	padding: 20px;
+}
+.cost{
+	padding: 20px;
+	margin: 8px;
+	box-shadow: 0px 0px 6px 6px #edebe8;
+}
+#inputs{
+	float: left;
+	width: 45%;
+	margin-top: 7px;
+}
+#address-form, #paypal-button-container{
+	padding:20px;
+	margin:8px;
+	margin-top: 25px;
+	box-shadow: 0px 0px 6px 6px #edebe8;
+} 
+
+label{
+	font-weight: bold;
+}
+.item{
+	display: inline-block;
+	padding: 5px;
+	margin: 10px;
+	width: 100%;
+}
+img{
+	float: left;
+	border: 1px solid black;
+}
+.item-body{
+	float: right;
+	margin-right: 20px;
+}
+.items{
+	box-shadow: 0px 0px 6px 6px #edebe8;
+	padding: 20px;
+	margin-top: 20px;
+	width: 100%;
+}

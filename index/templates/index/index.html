@@ -1,0 +1,99 @@
+{% extends 'index\\base.html' %}
+{% load static %}
+{% block scripts %}
+<link rel="stylesheet" type="text/css" href="{% static 'index\\css\\index_1.css' %}">
+
+{% endblock %}
+{% block body %}
+	<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+		<div class="carousel-inner">
+			<div class="carousel-item active" data-interval="2000">
+				<img src="{% static 'index\\images\\11.jpg' %}" class="d-block w-100">
+				<div class="carousel-caption d-flex h-100 align-items-center justify-content-center">
+				<h1>Purchase with huge discounts</h1>
+				</div>
+			</div>
+			<div class="carousel-item" data-interval="2000">
+				<img src="{% static 'index\\images\\22.jpg' %}" class="d-block w-100">
+				<div class="carousel-caption d-flex h-100 align-items-center justify-content-center">
+				<h1>Fresh products and free deliver</h1>
+				</div>
+			</div>
+			<div class="carousel-item" data-interval="2000">
+				<img src="{% static 'index\\images\\44.jpg' %}" class="d-block w-100">
+				<div class="carousel-caption d-flex h-100 align-items-center justify-content-center">
+				<h1>Receive on time</h1>
+				</div>
+			</div>
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+
+<div class="container">
+	<section class="for-cards">
+		<div class="row">
+			{% if products %}
+			{% for product in products %}
+			<div class="col col-sm-6 col-md-4 col-lg-3">
+				<div class="card-header">
+					<h4>{{product.name.capitalize}}</h4>
+				</div>
+				<div class="card-image">
+					<img class='thumbnail' src="{{product.image.url}}">
+				</div>
+				<div class="card-body">
+					<h3>${{product.price|floatformat:2}}</h3>
+				</div>
+				<div class="card-footer">
+					<a class="btn btn-primary" href="{% url 'index:product_view' product.id %}">View</a>
+					<button class="btn btn-outline-success update-cart" data-product="{{product.id}}" data-action="add" data-url="{% url 'dashboard:updateItem' %}" data-csrftoken="{{ csrf_token }}">Add to cart</button>
+				</div>
+			</div>
+			{% endfor %}
+			{% endif %}
+		</div>
+	</section>
+</div>
+	<div class="foot">
+		<div class="container" id="table">
+			<table id="tbl" class="justify-content-center nav-fill" align="center">
+				<tr>
+					<th><br>Get to know us</th>
+					<th><br>Xeon payment products</th>
+					<th><br>Let us help you</th>
+				</tr>
+				<tr>
+					<td><a href="#" style="color: white">Careers</td></a>
+					<td><a href="#" style="color: white">Xeon Business card</td></a>
+					<td><a href="#" style="color: white">Xeon and COVID-19</td></a>
+				</tr>
+				<tr>
+					<td><a href="#" style="color: white">Blog</td></a>
+					<td><a href="#" style="color: white">Reload your Balance</td></a>
+					<td><a href="#" style="color: white">Your account</td></a>
+				</tr>
+				<tr>
+					<td><a href="#" style="color: white">About Xeon</td></a>
+					<td><a href="#" style="color: white">Xeon currency converter</td></a>
+					<td><a href="#" style="color: white">Your orders</td></a>
+				</tr>
+				<tr>
+					<td><a href="#" style="color: white">About Relations</td></a>
+					<td><a href="#" style="color: white">Shop with points</td></a>
+					<td><a href="#" style="color: white">Return and replacements</td></a>
+				</tr>
+				<tr>
+					<td><a href="#" style="color: white">About Devices</td></a>
+					<td><a href="#" style="color: white">Help</td></a>
+				</tr>
+			</table>
+		</div>
+	</div>
+{% endblock %}
