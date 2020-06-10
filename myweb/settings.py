@@ -26,7 +26,7 @@ SECRET_KEY = '+n+-7(sihz4xn11b^qcfm@a324itbk$x6pc$r2wjaymi)l99s)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['brian090.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -81,22 +81,22 @@ WSGI_APPLICATION = 'myweb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'DEMO_DB',
-#         'USER': 'postgres',
-#         'PASSWORD':'Beauty2000$',
-#         'HOST': 'localhost',
-#         'PORT':5432
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'eCommerce',
+        'USER': 'Brian',
+        'PASSWORD':'Beauty2000$',
+        'HOST': 'database-1.ck5wyjh8wyj1.us-east-2.rds.amazonaws.com',
+        'PORT':5432
+    }
+}
 
 
 
@@ -133,14 +133,22 @@ USE_L10N = True
 USE_TZ = True
 
 
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_TMP = os.path.join(BASE_DIR, 'static')
+
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static'),
+# )
+
+
+
+
 MEDIA_URL = '/images/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/images')
@@ -154,15 +162,15 @@ EMAIL_USE_TLS=True
 EMAIL_HOST_USER = 'toirovshohruxmirzo@gmail.com'
 EMAIL_HOST_PASSWORD='Beauty1812$'
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
 #S3 BUCKETS CONFIG
 
-# AWS_ACCESS_KEY_ID = 'AKIA5Y2YOEWN4QBGTDX4'
-# AWS_SECRET_ACCESS_KEY = '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'
-# AWS_STORAGE_BUCKET_NAME = 'brian090'
-# AWS_S3_FILE_OVERWRITE = False
-# AWS_DEFAULT_ACL = None
-# MEDIAFILES_LOCATION = 'media/images'
-# DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = 'AKIA5Y2YOEWN4QBGTDX4'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'brian090'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+MEDIAFILES_LOCATION = 'media/images'
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
