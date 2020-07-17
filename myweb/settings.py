@@ -92,8 +92,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'eCommerce',
         'USER': 'Brian',
-        'PASSWORD':'Beauty2000$',
-        'HOST': 'database-1.ck5wyjh8wyj1.us-east-2.rds.amazonaws.com',
+        
         'PORT':5432
     }
 }
@@ -159,16 +158,11 @@ EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT= 587
 EMAIL_USE_TLS=True
-EMAIL_HOST_USER = 'toirovshohruxmirzo@gmail.com'
-EMAIL_HOST_PASSWORD='Beauty1812$'
 
 # django_heroku.settings(locals())
 
 #S3 BUCKETS CONFIG
 
-AWS_ACCESS_KEY_ID = 'AKIA5Y2YOEWN4QBGTDX4'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'brian090'
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 MEDIAFILES_LOCATION = 'media/images'
